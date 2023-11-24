@@ -1,0 +1,20 @@
+{%extends "main.html"%}
+
+{%block title%}
+{{puja.name}}
+{%endblock title%}
+
+{%block content%}
+
+<h3>{{puja.name}}</h3>
+<p>{{puja.desc}}</p>
+<hr>
+<h3>Available Pandits: </h3>
+
+{%for pandit in pandits%}
+    <h5>{{pandit.name}}</h5>
+    <p>{{pandit.desc}}</p>
+    <hr>
+
+{%endfor%}
+{%endblock content%}
