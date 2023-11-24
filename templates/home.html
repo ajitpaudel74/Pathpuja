@@ -5,16 +5,25 @@
 {%block title%}
 Home
 {%endblock title%}
-
+{%block css%}
+<style>
+  body{
+    background-color: #F7567C;
+  }
+</style>
+{%endblock css%}
 {%block content%}
-<div class="bg-image">
-    <img src={% static "/images/pexels-shotify-15390844.jpg" %} class='img-fluid'>
+
+<div class="bg-image container-fluid">
+    <img src={% static "/images/photo2.jpg" %} class='img-fluid'>
     <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
         <div class="d-flex justify-content-center align-items-center h-100">
           <p class="text-white mb-0">Can you see me?</p>
         </div>  
     </div> 
 </div>
+
+
 
 
 

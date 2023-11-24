@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-warning bg-gradient">
+<div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{%url "home"%}">Pathpuja</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -13,10 +14,10 @@
         </li>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto ">
-          <li class="nav-item">
+          <li class="nav-item btn btn-sm btn-info">
             <a class="nav-link active" aria-current="page" href="{%url "register"%}">Register account</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item btn btn-sm btn-link">
             <a class="nav-link" href="{%url "login"%}">Login</a>
           </li>			
           </ul>	
@@ -24,3 +25,4 @@
       </ul>
     </div>
   </nav>
+</div>

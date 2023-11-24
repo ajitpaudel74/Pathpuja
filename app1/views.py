@@ -33,14 +33,16 @@ def login(request):
 def register(request):
     form = RegistrationForm()
     context = {
-        'form' : form
+        'form' : form,
+        'errors':form.errors
     }
 
     if request.method=="POST":
         form=RegistrationForm(request.POST)
+        
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect("/login")
 
     return render(request,"register.html",context)
 
