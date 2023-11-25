@@ -5,15 +5,34 @@
 {%endblock title%}
 
 {%block content%}
+<style>
+    #puja-desc{
+        width:700px;
+        font-size:15px;
+        font-family: georgia;
 
-<h3>{{puja.name}}</h3>
-<p>{{puja.desc}}</p>
+    }
+    body
+    {
+        margin: 5px 5px;
+    }
+    #puja-name{
+        margin:5px 5px;
+        font-size: 25px;
+        font-family: georgia;
+        border-style:solid;
+    }
+
+</style>
+<h3 id="puja-name">{{puja.name}}</h3>
+<p id="puja-desc">{{puja.desc}}</p>
 <hr>
 <h3>Available Pandits: </h3>
 
 {%for pandit in pandits%}
     <h5>{{pandit.name}}</h5>
     <p>{{pandit.desc}}</p>
+    <p><button class="btn btn-sm btn-info"><a href="{%url "book_pandit" pandit.id%}">Book now</a></button></p>
     <hr>
 
 {%endfor%}

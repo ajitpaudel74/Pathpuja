@@ -3,23 +3,36 @@
 {%block title%}Puja List{%endblock title%}
 
 {%block content%}
-<p>Here are a list of pujas: </p>
-<div class="card card-body">
-    <table>
-        <th>Puja</th>
-        <th>Description</th>
-    {%for puja in pujas%}
-        <tr>
-            
-            <td><a href="{%url 'puja' puja.id%}">{{puja.name}}</a></td>
-            <td>{{puja.desc}}</td>
-        </tr>
-    {%endfor%}
-    </table>
+<style>
+  #puja-name{
+    text-align:center;
+    font-size:20px;
+    background-color:orange;
+  }
+  .card{
+    width:200px;
+  }
+</style>
 
-    
-</div>
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<p>Here are a list of pujas: </p>
+    {%for puja in pujas%}
+            
+            <p id="puja-name"><a href="{%url 'puja' puja.id%}">{{puja.name}}</a></p>
+            <!--td>{{puja.desc}}</td-->
+    {%endfor%}
+
+  {%for puja in pujas%}
+  <div class="col-sm-12 col-md-6 col-lg-3 pb-4">
+    <div class="card">
+      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top" alt="Hollywood Sign on The Hill"/>
+      <div class="card-body">
+        <h5 class="card-title">{{puja.name}}</h5>
+				  	<!--p class="card-text">{{ p.product_description }}</p-->
+				  	<a href="{%url "puja" puja.id%}" class="btn btn-warning">Buy now</a>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
     <div class="col">
       <div class="card">
         <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top" alt="Hollywood Sign on The Hill"/>

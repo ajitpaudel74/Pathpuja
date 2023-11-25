@@ -6,25 +6,120 @@
 Home
 {%endblock title%}
 {%block css%}
-<style>
-  body{
-    background-color: #F7567C;
-  }
-</style>
 {%endblock css%}
 {%block content%}
+<style>
+  #img{
+    margin-bottom:10px;
+  }
+  #first-img{
+    height: 470px;
+    width: 500px;
+    border-radius: 50%;
+    margin-top:10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .img1-div{
+    margin:10px 10px;
+    background-color:#12a5d6;
+  }
+  #feat1{
+    
+    float: right;
+    width: 55%;
+    height: 450px;
+    margin-top:20px;
+    margin-bottom: 20px;
+    border-radius: 10%;
+    text-align: center;
+    padding-top: 150px;
+    font-size: 45px;
+    font-family: verdana;
+    color:white;
+    font-weight: bold;
+    /*background-color: rgb(76, 203, 245);*/
+  }
+  .img2-div{
+    margin-top:10px 10px;
+    border-style:solid;
+    background-color:#12a5d6 ;
+
+  }
+  #second-img{
+    float: right;
+    width: 40%;
+    height: 450px;
+    border-radius: 50%;
+    margin-top: 10px;
+  }
+  #feat2{
+    height: 450px;
+    width: 50%;
+    margin-top:20px;
+    margin-bottom: 20px;
+    border-radius: 10%;
+    text-align: center;
+    padding-top: 150px;
+    font-size: 45px;
+    font-family: verdana;
+    color:white;
+    font-weight: bold;
+  }
+  #features{
+    text-align: center;
+    font-family:verdana;
+    font-weight:bolder;
+    color:white;
+    font-size: 50px;
+    border-style:solid;
+    margin-left: 10px;
+    margin-right:10px;
+  }
+  #features-list{
+    font-family:verdana;
+    font-weight:bolder;
+    color:white;
+    font-size:30px;
+    text-align: center;
+    
+
+  }
+</style>
 
 <div class="bg-image container-fluid">
-    <img src={% static "/images/photo2.jpg" %} class='img-fluid'>
-    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-        <div class="d-flex justify-content-center align-items-center h-100">
-          <p class="text-white mb-0">Can you see me?</p>
-        </div>  
-    </div> 
+    <img id="img" src={% static "/images/mainImage2.jpg" %} class='img-fluid'>
+
 </div>
 
+<!--div class="img1-div">
+    <img id="first-img" src={%static "/images/image-1.jpg"%} >
+    <p id="feat1">Experienced and Skilled Pandits</p>
+</div>
 
+<div class="img2-div">
+  <img id="second-img" src={%static "/images/image-2.jpg"%}>
+  <p id="feat2">Fast and Affordable service</p>
+</div-->
+<div class="fet">
+  <p id="features">
+    Our Features are:
+    <ul id="features-list">
+      <li>Experienced and qualified pandits</li>
+      <li>Fast and affordable service</li>
+      <li>Completes all of your religious needs.</li>
+      <li>Pandits available 24/7.</li>
+    </ul>
+  
+  </p>
+</div>
 
+<div class="services">
+  <p>
+    Our Features are:
+  </p>
+</div>
 
 
 {%endblock content%}

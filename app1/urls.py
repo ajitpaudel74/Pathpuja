@@ -7,6 +7,7 @@ urlpatterns = [
     path('puja-list/',views.puja_list,name="puja_list"),
     path('login/',views.loginUser,name="login"),
     path('logout/',views.logoutUser,name="logout"),
-    path('register/',views.register, name="register")
+    path('register/',views.register, name="register"),
+    path('book-pandit/<str:pk>',views.BookPandit,name="book_pandit")
 
 ]
