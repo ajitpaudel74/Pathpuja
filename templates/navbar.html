@@ -1,6 +1,22 @@
+{% load static %}
+<style>
+  #hello-msg{
+    color:white;
+    margin-right: 5px;
+  }
+  #logout{
+    color:white;
+
+  }
+  #logoutbtn:hover{
+    background-color: black;
+  }
+
+</style>
+
 <div class="container-fluid">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{%url "home"%}">Pathpuja</a>
+  <img src={% static "/images/naradmuni48(2).ico" %}>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,17 +28,16 @@
         <li class="nav-item">
           <a class="nav-link text-white" href="{%url "puja_list"%}">Pujas</a>
         </li>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto ">
-          <li class="nav-item btn btn-sm btn-info">
-            <a class="nav-link active" aria-current="page" href="{%url "register"%}">Register account</a>
-          </li>
-          <li class="nav-item btn btn-sm btn-link">
-            <a class="nav-link" href="{%url "login"%}">Login</a>
-          </li>			
-          </ul>	
-        </div>	  
+        <li class="nav-item btn btn-sm btn-info">
+          <a class="nav-link active" aria-current="page" href="{%url "register"%}">Register account</a>
+        </li>
+        <li class="nav-item btn btn-sm btn-link">
+          <a class="nav-link" href="{%url "login"%}">Login</a>
+        </li>				  
       </ul>
     </div>
+
+    <span id="hello-msg">Hello, {{request.user}}</span>
+    <span><button id="logoutbtn" class="nav-item btn btn-sm btn-info"><a id="logout" class="nav-link active" aria-current="page" href="{%url "logout"%}">Logout</a></button></span>
   </nav>
 </div>
