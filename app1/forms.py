@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .views import *
 from .models import *
+from django import forms
 
 class RegistrationForm(UserCreationForm):
     class Meta:
@@ -12,16 +13,10 @@ class RegistrationForm(UserCreationForm):
 class BookingForm(ModelForm):
     class Meta:
         model=Booking
-        fields = '__all__'
-        
-        #to prefill the puja field in form
+        fields = ['date']
 
-        # def __intit__(self, *args, **kwargs):
-        #     super().__init__(**args, **kwargs)#calls constructor from parent class 'Modelform' to ensure form is properly
-        #                                     # initialized with necessary arguments
-
-        #     initial = kwargs.get('initial') #gets the initial dictionary passed in views.py form
-        #     if initial:#if initial dict has value
-        #         skills = initial.get('skills')#get the skills value
-        #         if skills:
-        #             self.fields['puja'].initial = skills#prefill the skills field in form with skills value
+    date= forms.DateField(
+        label="Date Booked for",
+        required=True,
+        widget=forms.DateInput(attrs={"type": "date"}),
+    )

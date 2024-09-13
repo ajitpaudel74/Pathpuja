@@ -8,13 +8,9 @@
 <style>
     #puja-desc{
         width:700px;
-        font-size:15px;
+        font-size:20px;
         font-family: georgia;
 
-    }
-    body
-    {
-        margin: 5px 5px;
     }
     #puja-name{
         margin:5px 5px;
@@ -22,18 +18,70 @@
         font-family: georgia;
         border-style:solid;
     }
+    .img{
+        width:200px;
+
+    }
+    .avail{
+        display:flex;
+    }
+    .avail-profile{
+        max-width:200px;
+        margin:10px;
+        border:1px solid #ccc;
+        border-radius:5px;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        text-align: center;
+        padding-bottom:5px;
+    }
+    a{
+        text-decoration: none;
+    }
+    /* .btn-a{
+        text-decoration: none;
+        border:1px solid orange;
+        margin-bottom:3px;
+
+    }
+    .btn-a:hover{
+        background-color: orange;
+        color:white;
+    } */
+    .desc{
+        display:flex;
+        justify-content:space-around;
+        align-items: center;
+    }
+    .puja_img{
+        height:350px;
+        border-radius:50px;
+    }
 
 </style>
 <h3 id="puja-name">{{puja.name}}</h3>
-<p id="puja-desc">{{puja.desc}}</p>
+<div class="desc">
+    <image class="puja_img" src="/static/images/{{puja.puja_image}}">
+    <p id="puja-desc">{{puja.desc}}</p>
+</div>
 <hr>
 <h3>Available Pandits: </h3>
 
-{%for pandit in pandits%}
-    <h5>{{pandit.name}}</h5>
-    <p>{{pandit.desc}}</p>
-    <p><button class="btn btn-sm btn-info"><a href="{%url "book_pandit" pandit.id%}">Book now</a></button></p>
-    <hr>
+<div class="avail">
+    {%for pandit in pandits%}
+    <div class="avail-profile">
+        <image class="img" src="/static/images/{{pandit.pandit_image}}">
+        <a href="{%url "pandit_profile" pandit.id%}"><h5>{{pandit.name}}</h5></a>
+        {%if request.user.is_authenticated%}
+        <a class="btn btn-warning" href="{%url "book_pandit" puja.id pandit.id%}">Book now</a>
+        {% else %}
+        <a class="btn btn-warning" href="{%url "login"%}">Book now</a>
+        {%endif%}
+    </div>
 
-{%endfor%}
+    {%endfor%}
+</div>
 {%endblock content%}

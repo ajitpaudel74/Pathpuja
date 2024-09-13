@@ -8,6 +8,9 @@ urlpatterns = [
     path('login/',views.loginUser,name="login"),
     path('logout/',views.logoutUser,name="logout"),
     path('register/',views.register, name="register"),
-    path('book-pandit/<str:pk>',views.BookPandit,name="book_pandit")
+    path('book-pandit/<str:pk>/<str:pdt>',views.BookPandit,name="book_pandit"),
+    path('pandit_profile/<str:pk>',views.panditProfile,name="pandit_profile"),
+    path('profile',views.userProfile,name="user_profile"),
+    path('cancel_booking/<str:pk>',views.cancelBooking,name="cancel_booking")
 
 ]

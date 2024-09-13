@@ -1,0 +1,33 @@
+{%extends "main.html"%}
+
+{% block title %}
+{{pandit.name}}
+{% endblock title %}
+
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/static/images/{{pandit.pandit_image}}" alt="{{ pandit.name }}" class="img-fluid mb-4">
+        </div>
+        <div class="col-md-8">
+            <h1>{{ pandit.name }}</h1>
+            <p><strong>Experience:</strong> {{ pandit.experience }} years</p>
+            <p><strong>Contact:</strong> {{ pandit.contact }}</p>
+            <p><strong>Bio:</strong> {{ pandit.desc }}</p>
+            <ol><strong>Skills:</strong><ol>
+                {%for skill in skills%}
+                {%if request.user.is_authenticated%}
+                <li>{{skill}}       <a class="book-btn" href={%url "book_pandit" skill.id pandit.id%}>Book Now</a></li>
+                {%else%}
+                <li>{{skill}}       <a class="book-btn" href={%url "login"%}>Book Now</a></li>
+                {%endif%}
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{%endblock content%}

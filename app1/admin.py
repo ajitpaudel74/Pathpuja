@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Puja)
 admin.site.register(Pandit)
 admin.site.register(Booking)
+admin.site.register(Availability)

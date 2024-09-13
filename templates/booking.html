@@ -1,9 +1,14 @@
 {%extends "main.html"%}
 
 {%block content%}
-<p>Book {{pandit}}</p>
+<h1>Your Booking information:</h1>
+<p><strong>User:</strong>{{user}}</p>
+<p><strong>Puja:</strong>{{puja}}</p>
+<p><strong>Pandit:</strong>{{pandit}}</p>
+
 <form method="POST" action="">
     {%csrf_token%}
-    {{form}}
+    {{form.as_p}}
+    <input type="submit" value="Book">
 </form>
 {%endblock content%}

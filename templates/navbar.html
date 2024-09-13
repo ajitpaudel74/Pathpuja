@@ -11,6 +11,14 @@
   #logoutbtn:hover{
     background-color: pink;
   }
+  .container-fluid{
+    margin:0;
+  }
+  #navbar{
+    margin:0;
+    padding:0;
+    border-radius:10px;
+  }
 
 </style>
 
@@ -28,16 +36,19 @@
         <li class="nav-item">
           <a class="nav-link text-white" href="{%url "puja_list"%}">Pujas</a>
         </li>
+        {%if not request.user.is_authenticated %}
         <li class="nav-item btn btn-sm btn-info">
           <a class="nav-link active" aria-current="page" href="{%url "register"%}">Register account</a>
         </li>
         <li class="nav-item btn btn-sm btn-link">
           <a class="nav-link" href="{%url "login"%}">Login</a>
+          {%endif%}
         </li>				  
       </ul>
     </div>
-
-    <span id="hello-msg">Hello, {{request.user}}</span>
-    <span><button id="logoutbtn" class="nav-item btn btn-sm btn-info"><a id="logout" class="nav-link active" aria-current="page" href="{%url "logout"%}">Logout</a></button></span>
+    {%if request.user.is_authenticated%}
+      <a href="{%url "user_profile"%}"><span id="hello-msg">Hello, {{request.user}}</span>
+      <span><button id="logoutbtn" class="nav-item btn btn-sm btn-info"><a id="logout" class="nav-link active" aria-current="page" href="{%url "logout"%}">Logout</a></button></span>
+    {% endif %}
   </nav>
 </div>

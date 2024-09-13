@@ -1,0 +1,51 @@
+{%extends "main.html"%}
+
+{%block title%}
+Your Profile
+{%endblock title%}
+
+{%block content%}
+<style>
+</style>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>User Profile</h2>
+            <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+
+        <div class="col-md-8">
+            <h2>Your Bookings</h2>
+            
+            {% if bookings %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Pandit Name</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                            <tr>
+                                <td>{{ booking.id }}</td>
+                                <td>{{ booking.pandit.name }}</td>
+                                <td>{{ booking.date }}</td>
+                                <td><a class="btn btn-sm btn-outline-danger" href="{%url "cancel_booking" booking.id%}">Cancel</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No bookings found.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{%endblock content%}

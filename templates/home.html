@@ -1,4 +1,6 @@
-{%extends "main.html" %}
+{% extends 'main.html' %}
+ 
+{% comment %} {%extends "main.html" %}
 {%load static%}
 
 
@@ -71,7 +73,7 @@ Home
     text-align: center;
     font-family:verdana;
     font-weight:bolder;
-    color:white;
+    color:rgb(7, 7, 7);
     font-size: 50px;
     border-style:solid;
     margin-left: 10px;
@@ -80,7 +82,7 @@ Home
   #features-list{
     font-family:verdana;
     font-weight:bolder;
-    color:white;
+    color:rgb(0, 0, 0);
     font-size:30px;
     text-align: center;
     
@@ -89,7 +91,7 @@ Home
 </style>
 
 <div class="bg-image container-fluid">
-    <img id="img" src={% static "/images/mainImage2.jpg" %} class='img-fluid'>
+    <img id="img" src={% static "/images/_00587642-15dc-434a-97ae-98c6a5383d1f.jpeg" %} class='img-fluid'>
 
 </div>
 
@@ -102,24 +104,105 @@ Home
   <img id="second-img" src={%static "/images/image-2.jpg"%}>
   <p id="feat2">Fast and Affordable service</p>
 </div-->
-<div class="fet">
-  <p id="features">
-    Our Features are:
-    <ul id="features-list">
-      <li>Experienced and qualified pandits</li>
-      <li>Fast and affordable service</li>
-      <li>Completes all of your religious needs.</li>
-      <li>Pandits available 24/7.</li>
-    </ul>
-  
-  </p>
-</div>
+{% endcomment %}
 
-<div class="services">
-  <p>
-    Our Features are:
-  </p>
-</div>
+{% block title %}Pandit Booking Service
 
+{% endblock %}
+
+{% block content %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<style>
+  .row{
+    display:flex;
+    flex-wrap: wrap;
+    margin:8px;
+  }
+  .row .pandits{
+    min-height:100px;
+    border:1px solid gold;
+    margin:10px;
+    padding:8px;
+    border-radius:5px;
+  }
+  #features{
+    text-align: center;
+    font-family:verdana;
+    font-weight:bolder;
+    color:rgb(7, 7, 7);
+    font-size: 50px;
+    border-style:solid;
+    margin-left: 10px;
+    margin-right:10px;
+  }
+  .pandit-image{
+    width:230px;
+  }
+  .pandits{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  </style>
+
+<!-- <div class="jumbotron mt-4">
+    <h1 class="display-4">Welcome to Pathpuja</h1>
+    <p class="lead">Book experienced pandits for Hindu rituals and ceremonies.</p>
+    <hr class="my-4">
+    <p>Find the best pandit for your next event and book them easily.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'register' %}" role="button">Get Started</a>
+</div> -->
+<div class="hero-section" style="background-image: url('static/images/_00587642-15dc-434a-97ae-98c6a5383d1f.jpeg'); background-size: cover; background-position: center; height: 600px; position: relative;">
+  <div class="overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5);">
+  </div>
+  <div class="container h-100">
+      <div class="row h-100">
+          <div class="col-md-12 d-flex flex-column justify-content-center align-items-center text-center text-white">
+              <h1 class="display-3">Book Your Pandit for Hindu Rituals</h1>
+              <p class="lead mt-3">Simplify the process of booking experienced pandits for ceremonies, weddings, and special rituals.</p>
+              <a href="{% url 'puja_list' %}" class="btn btn-lg btn-primary mt-4">Get Started</a>
+          </div>
+      </div>
+  </div>
+</div>
+<h1>Our Featured Pandits are:</h1>
+<div class="row">
+  {%for pandit in pandits%}
+    <div class="col-md-5 pandits">
+        <image class="pandit-image" src="/static/images/{{pandit.pandit_image}}">
+        <div class="info">
+          <h2>{{pandit.name}}</h2>
+          
+          <a class="btn btn-outline-warning" href="{%url "pandit_profile" pandit.id%}" role="button">View Profile</a>
+        </div>
+        
+    </div>
+    {%endfor%}
+</div>
+<div class="container mt-5">
+  <h2 class="text-center mb-5">Why Choose Us?</h2>
+  <div class="row">
+      <div class="col-md-3 text-center">
+          <i class="fas fa-praying-hands fa-3x mb-3 text-primary"></i>
+          <h4>Experienced Pandits</h4>
+          <p>We connect you with highly experienced and knowledgeable pandits who specialize in all types of Hindu rituals and ceremonies.</p>
+      </div>
+      <div class="col-md-3 text-center">
+          <i class="fas fa-calendar-alt fa-3x mb-3 text-primary"></i>
+          <h4>Easy Scheduling</h4>
+          <p>Book your preferred pandit with just a few clicks, and choose the date that works best for you with our user-friendly scheduling tool.</p>
+      </div>
+      <div class="col-md-3 text-center">
+          <i class="fas fa-comments fa-3x mb-3 text-primary"></i>
+          <h4>Customizable Rituals</h4>
+          <p>Discuss and personalize your ceremony to fit your specific spiritual needs and ensure all your requirements are met.</p>
+      </div>
+      <div class="col-md-3 text-center">
+          <i class="fas fa-shield-alt fa-3x mb-3 text-primary"></i>
+          <h4>Secure Payments</h4>
+          <p>Make secure and hassle-free payments for your bookings using our trusted payment gateway, with complete peace of mind.</p>
+      </div>
+  </div>
+</div>
 
 {%endblock content%}

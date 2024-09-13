@@ -12,7 +12,11 @@ from .forms import RegistrationForm,BookingForm
 # Create your views here.
 
 def home(request):
-    return render(request,'home.html')
+    pandits=Pandit.objects.all()
+    context={
+        'pandits':pandits
+    }
+    return render(request,'home.html',context)
 
 def puja_list(request):
     pujas = Puja.objects.all()
@@ -49,7 +53,7 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
 
-    return redirect("login")
+    return redirect("home")
 
 def register(request):
     form = RegistrationForm()
@@ -70,25 +74,61 @@ def register(request):
     return render(request,"register.html",context)
 
 
-def BookPandit(request, pk):
-    pandit = Pandit.objects.get(id=pk)
-
+def BookPandit(request, pk,pdt):
+    pandit = Pandit.objects.get(id=pdt)
+    puja=Puja.objects.get(id=pk)
     if request.method=="POST":
-        form = BookingForm(instance=pandit)
+        form = BookingForm(request.POST)
         if form.is_valid():
-            form.save()
+            book=form.save(commit=False)
+            book.user=request.user
+            book.pandit=pandit
+            book.puja=puja
+            book.save()
+            Availability.objects.create(
+                pandit=pandit,
+                date=book.date,
+                booking=book
+            )
             return redirect("/")
+        else:
+            print(form.errors)
 
     else:
         skills= pandit.skills.first()
-        booking_instance = Booking(user=request.user,pandit=pandit,puja=skills)
+        booking_instance = Booking(user=request.user,pandit=pandit,puja=puja)
         form=BookingForm(instance=booking_instance)
 
     context={
         'form':form,
-        'pandit':pandit
+        'pandit':pandit,
+        'puja':puja,
+        'user':request.user
     }
     return render(request,"booking.html",context)
 
 
+def panditProfile(request,pk):
+    pandit=Pandit.objects.get(id=pk)
+    skills = pandit.skills.all()
+    context={
+        'pandit':pandit,
+        'skills':skills
+    }
+    return render(request,"pandit_profile.html",context)
 
+def userProfile(request):
+    user=request.user
+    bookings=Booking.objects.filter(user=user)
+
+    context={
+        'user':user,
+        'bookings':bookings
+    }
+    return render(request,"user_profile.html",context)
+
+def cancelBooking(pk):
+    booking=Booking.objects.get(id=pk)
+    booking.delete()
+
+    return redirect("user_profile")
