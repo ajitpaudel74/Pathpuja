@@ -9,8 +9,6 @@ from .models import *
 from .forms import RegistrationForm,BookingForm
 
 
-# Create your views here.
-
 def home(request):
     pandits=Pandit.objects.all()
     context={
@@ -127,7 +125,7 @@ def userProfile(request):
     }
     return render(request,"user_profile.html",context)
 
-def cancelBooking(pk):
+def cancelBooking(request,pk):
     booking=Booking.objects.get(id=pk)
     booking.delete()
 
